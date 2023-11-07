@@ -27,7 +27,7 @@ app.use(
 app.use("/api/stock", StockRouter);
 
 // Testing
-app.get("/health", (req: Request, res: Response, next: NextFunction) => {
+app.get("/", (req: Request, res: Response, next: NextFunction) => {
   res.status(200).json({
     status: "success",
     message: "API is Up && Running 🚀🚀🚀",
