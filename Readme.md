@@ -1,4 +1,4 @@
-## Installation
+## Run this App
 
 Clone Repo
 ```
