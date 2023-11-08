@@ -7,7 +7,7 @@ $ git clone https://github.com/codebudy5247/Stock-Price-Tracker-Assignment.git
 
 ### Run Backend
 ```
-$ cd backend
+// In root Dir
 $ npm install
 $ npm run dev
 

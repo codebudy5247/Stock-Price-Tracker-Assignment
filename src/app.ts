@@ -27,12 +27,14 @@ app.use(
 app.use("/api/stock", StockRouter);
 
 // Testing
-app.get("/", (req: Request, res: Response, next: NextFunction) => {
+app.get("/healthCheck", (req: Request, res: Response, next: NextFunction) => {
   res.status(200).json({
     status: "success",
     message: "API is Up && Running 🚀🚀🚀",
   });
 });
+
+
 
 // UnKnown Routes
 app.all("*", (req: Request, res: Response, next: NextFunction) => {

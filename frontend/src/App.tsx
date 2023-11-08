@@ -41,7 +41,7 @@ function App() {
   // Update after every 1min
   useInterval(() => {
     getStock();
-  }, 60000);
+  }, 5000);
 
   return (
     <>
@@ -69,9 +69,10 @@ function App() {
             id="combo-box-demo"
             options={stocks}
             getOptionLabel={(stock: any) => stock?.company}
+            // eslint-disable-next-line
             onChange={(event, newValue) => {
-              // console.log(newValue,"newValue");
-              setSelectedStock(newValue?.symbol);
+              console.log(event,"newValue");
+              setSelectedStock(newValue?.symbol!);
             }}
             renderInput={(params) => (
               <TextField {...params} label="Select stock to view price." />
@@ -125,8 +126,32 @@ function App() {
 export default App;
 
 // useInterval hook
+// function useInterval(callback: () => void, delay: number | null): void {
+//   const savedCallback = useRef<() => void | null>(null);
+
+//   // Remember the latest function.
+//   useEffect(() => {
+//      // eslint-disable-next-line react-hooks/exhaustive-deps
+//     savedCallback.current = callback;
+//   }, [callback]);
+
+//   // Set up the interval.
+//   useEffect(() => {
+//     function tick() {
+//       if (savedCallback.current) {
+//         savedCallback.current();
+//       }
+//     }
+
+//     if (delay !== null) {
+//       const id = setInterval(tick, delay);
+//       return () => clearInterval(id);
+//     }
+//   }, [delay]);
+// }
+
 function useInterval(callback: () => void, delay: number | null): void {
-  const savedCallback = useRef<() => void | null>(null);
+  const savedCallback = useRef<(() => void) | null>(null);
 
   // Remember the latest function.
   useEffect(() => {
@@ -147,3 +172,4 @@ function useInterval(callback: () => void, delay: number | null): void {
     }
   }, [delay]);
 }
+
