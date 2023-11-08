@@ -2,6 +2,7 @@ import express, { NextFunction, Request, Response } from "express";
 require("dotenv").config();
 import morgan from "morgan";
 import cors from "cors";
+import path from 'path'
 import StockRouter from "./stock.route";
 import connectDB from './connectDB';
 
@@ -27,7 +28,7 @@ app.use(
 app.use("/api/stock", StockRouter);
 
 // Testing
-app.get("/healthCheck", (req: Request, res: Response, next: NextFunction) => {
+app.get("/health", (req: Request, res: Response, next: NextFunction) => {
   res.status(200).json({
     status: "success",
     message: "API is Up && Running 🚀🚀🚀",
@@ -35,6 +36,9 @@ app.get("/healthCheck", (req: Request, res: Response, next: NextFunction) => {
 });
 
 
+// app.get("*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+// });
 
 // UnKnown Routes
 app.all("*", (req: Request, res: Response, next: NextFunction) => {
